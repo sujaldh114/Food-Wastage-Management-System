@@ -13,13 +13,21 @@ st.set_page_config(
 )
 
 # Database Connection
+import streamlit as st
+import psycopg2
+
+# ===========================
+# Database Connection (Neon)
+# ===========================
+
 conn = psycopg2.connect(
-    host="localhost",
-    database="postgres",
-    user="postgres",
-    password="Merabeta123",
-    port="5433"
+    host="ep-wispy-haze-ao0lqvsm.c-2.ap-southeast-1.aws.neon.tech",
+    database="neondb",
+    user="neondb_owner",
+    password=st.secrets["DB_PASSWORD"],
+    sslmode="require"
 )
+
 cursor = conn.cursor()
 cursor.execute('SET search_path TO "Food_wastage_mngnt_Sys";')
 cursor.close()
